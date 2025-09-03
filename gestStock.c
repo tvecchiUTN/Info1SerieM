@@ -48,7 +48,7 @@ void ingresar_datos_producto(producto_t *inventario, size_t *cantidad_productos,
     {
         printf("Ingrese nombre: ");
         if (fgets(buffer_nombre, sizeof(buffer_nombre), stdin) == NULL) {
-            // Manejar error de lectura si es necesario
+            printf("Error de lectura\n");
             return;
         }
         borrar_salto(buffer_nombre);
@@ -122,4 +122,20 @@ static void asignacion_struct(const producto_t *src, producto_t *dst)
     strcpy(dst->nombre, src->nombre);
     dst->cantidad = src->cantidad;
     dst->precio = src->precio;
+}
+
+
+#define TODOS 0
+#define RANGO 1
+//Funciones para el listado de productos
+void imprimir_listado(const producto_t *inventario, size_t cantidad_productos, int opcion)
+{
+    if(opcion == TODOS)
+    {
+        printf("Codigo || Nombre || Cantidad || Precio\n");
+        for(int a = 0; a < cantidad_productos; a++)
+        {
+            printf("%6u || %40s || %8hu || %4.2f\n", inventario[a].codigo, inventario[a].nombre, inventario[a].cantidad, inventario[a].precio);
+        }
+    }
 }

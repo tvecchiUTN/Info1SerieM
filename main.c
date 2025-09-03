@@ -3,7 +3,7 @@
 #include "funcs.h"
 #include "gestStock.h"
 
-#define MAX_ELEMENTOS 100
+#define MAX_ELEMENTOS 1000
 
 #define OPCION_INGRESO 1
 #define OPCION_MODIFICACION 2
@@ -42,11 +42,11 @@ int main(void)
                 else
                 {
                     printf("Producto no encontrado.\n");
-                    int opcion_aniadir = 0;
-                    printf("Desea añadir los datos del producto?\n");
-                    printf("Si (ingrese 1)\n");
-                    printf("No (ingrese 0)\n");
-                    scanf("%d", &opcion_aniadir);
+                    int opcion_aniadir = 1;
+                    //printf("Desea añadir los datos del producto?\n");
+                    //printf("Si (ingrese 1)\n");
+                    //printf("No (ingrese 0)\n");
+                    //scanf("%d", &opcion_aniadir);
                     int c;
                     while ((c = getchar()) != '\n' && c != EOF);
                     if(opcion_aniadir)
@@ -55,7 +55,13 @@ int main(void)
                     }
                 }
                 break;
-
+            case OPCION_LISTADO:
+                int opte = 0;
+                printf("Ingrese 0 para imprimir todo el listado.\n");
+                printf("Ingrese 1 para imprimir un rango de valores.\n");
+                scanf("%d", &opte);
+                imprimir_listado(inventario, cantidad_productos, opte);
+                break;
             case OPCION_SALIR:
                 printf("Saliendo...\n");
                 break;
@@ -63,13 +69,5 @@ int main(void)
     }
 
     printf("\n");
-
-    for(int z = 0; z < cantidad_productos; z++)
-    {
-        printf("%u\n", inventario[z].codigo);
-        printf("%s\n", inventario[z].nombre);
-        printf("%hu\n", inventario[z].cantidad);
-        printf("%.2f\n", inventario[z].precio);
-    }
     return 0;
 }
