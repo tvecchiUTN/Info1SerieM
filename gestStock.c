@@ -43,37 +43,26 @@ void ingresar_datos_producto(producto_t *inventario, size_t *cantidad_productos,
     nuevo.codigo = codigo_producto;
 
     //Nombre del producto
-    char *auxNombre = NULL;
-    auxNombre = (char*)malloc(80 * sizeof(char*));
-    if(auxNombre == NULL)
-    {
-        return;
-    }
-    int puede = 1;
-    while(puede)
+    char buffer_nombre[80];
+    while(1)
     {
         printf("Ingrese nombre: ");
-        fgets(auxNombre, sizeof(auxNombre), stdin);
-        borrar_salto(auxNombre);
+        if (fgets(buffer_nombre, sizeof(buffer_nombre), stdin) == NULL) {
+            // Manejar error de lectura si es necesario
+            return;
+        }
+        borrar_salto(buffer_nombre);
             //BUscar nombre devuelve 1 si encuentra repetido
-        if(buscar_nombre(inventario, cantidad_productos, auxNombre))
+        if(!buscar_nombre(inventario, *cantidad_productos, buffer_nombre))
+        {
+            break;
+        }else
         {
             printf("Nombre repetido, intente de nuevo\n");
-            auxNombre = NULL;
-            if(auxNombre == NULL)
-            {
-                return;
-            }
-        }
-        else{
-            puede = 0;
         }
     }
-
-
     //Asignacion de nombre
-    strcpy(nuevo.nombre, auxNombre);
-    free(auxNombre);
+    strcpy(nuevo.nombre, buffer_nombre);
 
     uint16_t cdadAux = 0;
     printf("Ingrese la cantidad: ");
