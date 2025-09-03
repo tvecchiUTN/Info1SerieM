@@ -36,9 +36,11 @@ int main(void)
         switch(opcion)
         {
             case INGRESO:
-                if(busquedaCodigo(dataProduc, tama))
+                uint32_t codigoProducto = 0;
+                if(busquedaCodigo(dataProduc, tama, &codigoProducto))
                 {
                     printf("Encontrado\n");
+                    datosProductos(dataProduc, tama, codigoProducto);
                 }
                 else
                 {

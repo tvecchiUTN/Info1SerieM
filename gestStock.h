@@ -11,6 +11,7 @@ typedef struct
     float pvp; //Precio venta al publico
 }producto_t;
 
-int busquedaCodigo(producto_t *vec, size_t sz);
+int busquedaCodigo(producto_t *vec, size_t sz, uint32_t *codigo);
+void datosProductos(producto_t *vec, size_t sz, uint32_t codigo);
 
 #endif
