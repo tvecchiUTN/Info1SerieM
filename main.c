@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "funcs.h"
 #include "gestStock.h"
 
 #define MAX_ELEMENTOS 100
@@ -12,13 +13,7 @@
 int main(void)
 {
     producto_t inventario[MAX_ELEMENTOS];
-    size_t cantidad_productos = 1; // Usamos size_t porque es el tipo correcto para tamaños
-
-    // Inicializamos el primer producto
-    inventario[0].codigo = 111;
-    strcpy(inventario[0].nombre, "Pancho con coca");
-    inventario[0].cantidad = 2;
-    inventario[0].precio = 2000.0;
+    size_t cantidad_productos = 0;
 
     // (Mensaje de bienvenida largo omitido por claridad)
 
@@ -36,7 +31,10 @@ int main(void)
         {
             case OPCION_INGRESO:
                 uint32_t codigo_buscado = 0;
-                if(buscar_producto_por_codigo(inventario, cantidad_productos, &codigo_buscado))
+                printf("Ingrese codigo: ");
+                scanf("%u", &codigo_buscado);
+
+                if(buscar_producto_por_codigo(inventario, cantidad_productos, codigo_buscado))
                 {
                     printf("Producto encontrado:\n");
                     mostrar_datos_producto(inventario, cantidad_productos, codigo_buscado);
@@ -49,9 +47,11 @@ int main(void)
                     printf("Si (ingrese 1)\n");
                     printf("No (ingrese 0)\n");
                     scanf("%d", &opcion_aniadir);
+                    int c;
+                    while ((c = getchar()) != '\n' && c != EOF);
                     if(opcion_aniadir)
                     {
-
+                        ingresar_datos_producto(inventario, &cantidad_productos, codigo_buscado);
                     }
                 }
                 break;
@@ -63,5 +63,13 @@ int main(void)
     }
 
     printf("\n");
+
+    for(int z = 0; z < cantidad_productos; z++)
+    {
+        printf("%u\n", inventario[z].codigo);
+        printf("%s\n", inventario[z].nombre);
+        printf("%hu\n", inventario[z].cantidad);
+        printf("%.2f\n", inventario[z].precio);
+    }
     return 0;
 }

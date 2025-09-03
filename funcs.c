@@ -42,4 +42,15 @@ double dPP(const punto3d_t *punto1, const punto3d_t *punto2)
     return sqrt(cuadradoX + cuadradoY + cuadradoZ);
 }
 
+void borrar_salto(char *s)
+{
+    for(int z = 0; s[z] != 0; z++)
+    {
+        if(s[z] == '\n')
+        {
+            s[z] = 0;
+            return;
+        }
+    }
+}
 
