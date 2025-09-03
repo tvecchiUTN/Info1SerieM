@@ -4,17 +4,17 @@
 #define NO_ENCONTRADO 0
 #define ENCONTRADO 1
 
-int busquedaCodigo(producto_t *vec, size_t sz, uint32_t *codigo)
+int buscar_producto_por_codigo(producto_t *inventario, size_t cantidad_productos, uint32_t *codigo_ingresado)
 {
-    uint32_t codigoBuscar = 0;
+    uint32_t codigo_a_buscar = 0;
     printf("Ingrese codigo: ");
-    scanf("%u", &codigoBuscar);
+    scanf("%u", &codigo_a_buscar);
 
-    for(int i = 0; i < sz; i++)
+    *codigo_ingresado = codigo_a_buscar;
+    for(size_t i = 0; i < cantidad_productos; i++)
     {
-        if((vec[i].code) == codigoBuscar)
+        if((inventario[i].codigo) == codigo_a_buscar)
         {
-            *codigo = codigoBuscar;
             return ENCONTRADO;
         }
     }
@@ -22,15 +22,21 @@ int busquedaCodigo(producto_t *vec, size_t sz, uint32_t *codigo)
     return NO_ENCONTRADO;
 }
 
-void datosProductos(producto_t *vec, size_t sz, uint32_t codigo)
+void mostrar_datos_producto(producto_t *inventario, size_t cantidad_productos, uint32_t codigo_producto)
 {
-    for(int i = 0; i < sz; i++)
+    for(size_t i = 0; i < cantidad_productos; i++)
     {
-        if((vec[i].code) == codigo)
+        if((inventario[i].codigo) == codigo_producto)
         {
-            printf("Nombre: %s\n", vec[i].name);
-            printf("Cantidad: %u\n", vec[i].cdad);
-            printf("Precio: %.2f\n", vec[i].pvp);
+            printf("Nombre: %s\n", inventario[i].nombre);
+            printf("Cantidad: %u\n", inventario[i].cantidad);
+            printf("Precio: %.2f\n", inventario[i].precio);
+            break;
         }
     }
+}
+
+void ingresar_datos_producto(producto_t *inventario, size_t cantidad_productos, uint32_t codigo_producto)
+{
+
 }
