@@ -139,3 +139,15 @@ void imprimir_listado(const producto_t *inventario, size_t cantidad_productos, i
         }
     }
 }
+
+void borrar_salto(char *s)
+{
+    for(int z = 0; s[z] != 0; z++)
+    {
+        if(s[z] == '\n')
+        {
+            s[z] = 0;
+            return;
+        }
+    }
+}

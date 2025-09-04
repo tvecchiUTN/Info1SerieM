@@ -12,6 +12,4 @@ void dataSpace(punto3d_t *esp);
 double vector(const punto3d_t *punto);
 double dPP(const punto3d_t *punto1, const punto3d_t *punto2);
 
-void borrar_salto(char *s);
-
 #endif
