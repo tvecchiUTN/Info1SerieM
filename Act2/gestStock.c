@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "funcs.h"
 #include "gestStock.h"
 
 #define NO_ENCONTRADO 0

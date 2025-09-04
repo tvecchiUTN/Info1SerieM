@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include "funcs.h"
 #include "gestStock.h"
 
 #define MAX_ELEMENTOS 1000
